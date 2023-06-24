@@ -8,6 +8,7 @@ fi
 
 # Diretório onde será criado o arquivo de configuração
 CONFIG_DIR="$HOME/.config/nvim"
+CONFIG_NVIM="$HOME/.vim"
 CONFIG_FILE="$CONFIG_DIR/init.vim"
 AIRBLADE="$HOME/.config/nvim/pack/airblade/start"
 FURGITIVE="$HOME/.config/nvim/pack/tpope/start"
@@ -16,9 +17,11 @@ rm -rf $CONFIG_FILE
 rm -rf $CONFIG_DIR
 rm -rf $AIRBLADE
 rm -rf $FURGITIVE
+rm -rf $CONFIG_NVIM
 
 # Cria o diretório de configuração se não existir
 mkdir -p $CONFIG_DIR
+mkdir -p $FURGITIVE
 mkdir -p $AIRBLADE
 
 # Cria o arquivo de configuração se não existir
@@ -109,7 +112,7 @@ echo 'tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"' >> $C
 echo 'set autowriteall' >> $CONFIG_FILE
 
 # LPS install 
-echo "let g:coc_global_extensions = ['coc-phpls', 'coc-tsserver', 'coc-html', 'coc-css','coc-eslint', 'coc-emmet', 'coc-prettier']" >> $CONFIG_FILE
+echo "let g:coc_global_extensions = ['coc-phpls', 'coc-tsserver', 'coc-html', 'coc-css','coc-eslint', 'coc-emmet', 'coc-prettier', 'coc-json']" >> $CONFIG_FILE
 
 # Adiciona o tema padrão
 echo "autocmd VimEnter * colorscheme poimandres" >> $CONFIG_FILE
@@ -147,14 +150,6 @@ nvim -u NONE -c "helptags vim-gitgutter/doc" -c q
 cd $FURGITIVE
 git clone https://tpope.io/vim/fugitive.git
 nvim -u NONE -c "helptags fugitive/doc" -c q
-
-lua << EOF
-  require('poimandres').setup {
-    " leave this setup function empty for default config
-    " or refer to the configuration section
-    " for configuration options
-  }
-EOF
 
 echo "Configuração do Neovim concluída!"
 echo "Abrindo seu novo neovim"
