@@ -1,10 +1,11 @@
 # Ashirak Neovim
 
-![](./.nvim.png)
+![](./img/nvim.png)
 
 <br />
 
 > Descrição
+
     Distro neovim pessoal feita para desenvolvimento web e edição de pequenos
     scripts, com o maximo de minimalismo e leveza que pude extrair.
 
