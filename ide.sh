@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 # Verifica se o Neovim está instalado
 if ! command -v nvim &> /dev/null; then
@@ -123,8 +123,7 @@ echo "autocmd FileType html setlocal omnifunc=coc#refresh()" >> $CONFIG_FILE
 echo "autocmd FileType css setlocal omnifunc=coc#refresh()" >> $CONFIG_FILE
 
 # Mapeamento de tecla para ativar o autocompletar e pegar a seleção
-echo "inoremap <expr> pumvisible() ? (complete_info().selected != -1 ? '\<C-y>' ) : coc#refresh()" >> $CONFIG_FILE
-echo "inoremap <expr> pumvisible() ? '<C-n>' : coc#refresh()" >> $CONFIG_FILE
+echo "inoremap <expr> pumvisible() ? (complete_info().selected != -1 ? '\<CR>' ) : coc#refresh()" >> $CONFIG_FILE
 
 # Instala o gerenciador de pacotes 'vim-plug' se ainda não estiver instalado
 PLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
