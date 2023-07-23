@@ -103,6 +103,11 @@ echo "Plug 'plasticboy/vim-markdown'" >> $CONFIG_FILE
 echo "Plug 'vim-airline/vim-airline'" >>$CONFIG_FILE #Bar
 echo "Plug 'vim-airline/vim-airline-themes'" >> $CONFIG_FILE #Bar themes
 echo "Plug 'caenrique/nvim-toggle-terminal'" >> $CONFIG_FILE
+echo "Plug 'glepnir/dashboard-nvim'" >> $CONFIG_FILE
+echo "Plug 'nvim-tree/nvim-web-devicons'" >> $CONFIG_FILE
+echo "Plug 'terryma/vim-multiple-cursors'" >> $CONFIG_FILE
+echo "Plug 'lukas-reineke/indent-blankline.nvim'" >> $CONFIG_FILE
+
 echo "call plug#end()" >> $CONFIG_FILE
 
 #ToggleTerm

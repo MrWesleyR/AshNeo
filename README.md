@@ -11,6 +11,10 @@
 
 <br />
 
+>Dependência 
+ - ctags 
+ - git 
+
 > Funcionalidades
  
 <br />
