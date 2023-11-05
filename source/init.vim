@@ -50,8 +50,10 @@ let g:gitgutter_sign_removed = '|'
 "############## BlankLine ################
 
 let g:indentLine_bufTypeExclude = [ 'dashboard' ]
-let g:max_indent_increase = 1
-let g:indent_blankline_filetype = ['markdown', 'php', 'js', 'javascript', 'C', 'c', 'C', 'c++' ]
+let g:max_indent_increase = 2
+let g:indent_blankline_char = '┊'
+highlight IndentBlanklineChar guifg=#99a399 gui=nocombine
+let g:indent_blankline_filetype = ['markdown', 'php', 'js', 'javascript', 'C', 'c' , 'ts', 'typescript' ,'c++', 'lua', 'vim']
 
 "############## NerdTreee ################
 
@@ -74,7 +76,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'glepnir/dashboard-nvim'
     Plug 'nvim-tree/nvim-web-devicons'
     Plug 'terryma/vim-multiple-cursors'
-    Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'lukas-reineke/indent-blankline.nvim', { 'commit': '9637670' }
     Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
@@ -223,4 +225,3 @@ require'nvim-treesitter.configs'.setup {
         end,
     }
 }
-
