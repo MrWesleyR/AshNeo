@@ -1,6 +1,14 @@
 -- Treesitter 
 require'nvim-treesitter.configs'.setup {
-		ensure_installed={'c','lua', 'vim', 'vimdoc', 'query', 'php', 'json', 'javascript', 'typescript', 'gitcommit', 'html', 'css'},
+		ensure_installed={
+		'c','lua','vim',
+		'vimdoc','query',
+		'php','json',
+		'javascript',
+		'typescript',
+		'gitcommit',
+		'html','css'
+	},
     sync_install=false,
     auto_install=true,
     indent = {

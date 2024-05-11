@@ -1,7 +1,6 @@
 local api = vim.api
 
 -- Global vim
-api.nvim_set_keymap('n', '<Space>e', ':NvimTreeToggle<CR>', {})
 api.nvim_set_keymap('n', 'q', ':bd<CR>', {})
 api.nvim_set_keymap('n', 'Q', ':q<CR>', {})
 api.nvim_set_keymap('n', '<C-d>', ':bnext<CR>', {})

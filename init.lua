@@ -1,11 +1,11 @@
+--- Configs
+require('config.load')
+
 --- Plugins 
 require('plugins')
 
 require('plugins.load')
 
---- Configs
-require('config.load')
-
 --- Lsp
-require('lsp.coc')
+require('lsp.lspconfig')
 

@@ -11,4 +11,4 @@ options.autoindent = true
 options.backup = false
 options.writebackup = false
 options.signcolumn = "yes"
-
+vim.cmd('set termguicolors')
