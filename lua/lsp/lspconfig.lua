@@ -48,9 +48,8 @@ require('mason-lspconfig').setup({
 local cmp = require'cmp'
 cmp.setup({
   snippet = {
-    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      require('nvim_lsp').lsp_expand(args.body)
     end,
   },
   window = {
@@ -63,8 +62,8 @@ cmp.setup({
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),
 	}),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-		{ name = 'luasnip' }, -- For luasnip users.
+    { name = 'nvim_lsp_signature_help' },
+		{ name = 'nvim_lsp' },
   },{
 			{ name = 'buffer' },
 		}
