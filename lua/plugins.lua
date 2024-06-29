@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
 	--use 'thosakwe/vim-flutter'
 	--use 'natebosch/vim-lsc'
 	--use 'natebosch/vim-lsc-dart'
-	--	use {'neoclide/coc.nvim', branch = 'release'}
+	--use {'neoclide/coc.nvim', branch = 'release'}
 	use 'nvim-lualine/lualine.nvim'
 	use 'craftzdog/solarized-osaka.nvim'
 	use 'MunifTanjim/nui.nvim'
@@ -70,7 +70,6 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},
 		}
 	}
-
 
 	if packer_bootstrap then
     require('packer').sync()
