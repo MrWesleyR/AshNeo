@@ -1,5 +1,4 @@
 # Ashirak Neovim
-
 ![](./img/nvim.png)
 
 <br />
@@ -18,7 +17,7 @@
 >Dependência  
  - git 
  - npm 
-
+ - Packer
 
 > Funcionalidades
  
@@ -33,8 +32,7 @@
  -  Telescope
  -  Dashboard
  -  BlankLines
- -  NerdTreeGit 
- -  MultiLines 
+ -  NeoTree
  
  > Shortcuts
 
@@ -50,13 +48,12 @@
  | Dashboard| D|
  | Dashboard Update Plugins | u |
  | NerdTreeToggle | Space-e|
- | Next buffer| Crtl-Right|
- | Previous buffer | Crtl-Left| 
+ | Next buffer| Crtl-d|
+ | Previous buffer | Crtl-a| 
  | Save File| Crtl-s|
- | CoC Definition | gd|
- | CoC Type Definition | gy|
- | CoC implementation | gi |
- | CoC CoC references | gr |
+ | Go Definition | gd|
+ | Go Implementation | gi|
+ | Go references | gr |
  | Telescope Find Files | tf |
  | Telescope Live Grep | tg |
  | Telescope Buffers | tb |
@@ -66,24 +63,20 @@
  
  > Plugins 
  
- - Coc
- - NerdTree
- - NerdTreeGit
+ - LspZero
+ - NeoTree
  - WakaTime
  - vimCssColor
- - VimMarkdown
  - GitSigns
- - GitGutter
  - Furgitive
- - Airline
- - NvimToggleTerminal
+ - Feline
+ - ToggleTerminal
  - Treesitter
  - Telescope 
- - Vim Multiple Cursors
 
  <br />
  
  > Temas
  
-  - [colorscheme] catppucin-mocha
-  - [airline] base16_black_metal_immortal
+  - [colorscheme] no-clown-fiesta
+  - [airline] one-monokai 
