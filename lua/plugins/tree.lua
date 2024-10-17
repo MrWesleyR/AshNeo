@@ -8,7 +8,6 @@ vim.fn.sign_define("DiagnosticSignHint",
 {text = "󰌵", texthl = "DiagnosticSignHint"})
 
 require("neo-tree").setup({
-
 	icon = {
 		folder_closed = "",
     folder_open = "",
@@ -16,29 +15,40 @@ require("neo-tree").setup({
     default = "*",
     highlight = "NeoTreeFileIcon"
   },
-	 created = {
+	popup_border_style = "rounded",
+	 window = {
+		 position = "float",
+	 },
+	created = {
 		enabled = true,
-    required_width = 60, -- min width of window required to show this column
+    required_width = 600, -- min width of window required to show this column
   },
-	symlink_target = {
-		enabled = true,
+	symlink_target = { enabled = true, },
+	source_selector = {
+		winbar = true,
+		content_layout = "center",
+		sources = {
+			{ source = "filesystem", display_name = " 󰈔 File" },
+			{ source = "buffers", display_name = "  Bufs" },
+			{ source = "git_status", display_name = "  Git" },
+		},
 	},
 	filesystem = {
 		hide_dotfiles = true,
 		hide_gitignored = true,
 		hide_by_name = {
 			"composer.lock",
+			 ".gitignore"
 		},
 		always_show = {
 			-- PHP
-		 ".vendor",
 		},
 		never_show = {
 			-- PHP
-			"",
-		},
-	}
+		 "vendor",
+		 },
+	},
 })
 
- -- Remap
-vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree toggle<CR>', {})
+-- Remap
+vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree toggle position=float action=focus<CR>', {})

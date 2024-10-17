@@ -36,7 +36,16 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'intelephense', 'jsonls','sqlls','html','cssls','tailwindcss', 'lua_ls'},
+  ensure_installed = {
+		'intelephense',
+		'jsonls',
+		'sqlls',
+		'html',
+		'cssls',
+		'ts_ls',
+		'tailwindcss',
+		'lua_ls'
+	},
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
@@ -49,24 +58,27 @@ local cmp = require'cmp'
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('nvim_lsp').lsp_expand(args.body)
+			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+     -- require('nvim_lsp').lsp_expand(args.body)
     end,
   },
   window = {
-     completion = cmp.config.window.bordered(),
-     documentation = cmp.config.window.bordered(),
+		--completion = cmp.config.window.bordered(),
+		--documentation = cmp.config.window.bordered(),
   },
-   mapping = cmp.mapping.preset.insert({
+  mapping = cmp.mapping.preset.insert({
 		['<Tab>'] = cmp.mapping.select_next_item(),
     ['<Esc>'] = cmp.mapping.abort(),
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),
 	}),
+
   sources = cmp.config.sources({
-    { name = 'nvim_lsp_signature_help' },
-		{ name = 'nvim_lsp' },
-  },{
-			{ name = 'buffer' },
-		}
+		{ name = 'nvim_lsp_signature_help', group_index=1},
+		{ name = 'nvim_lsp' , group_index = 1},
+  },
+	{
+		{ name = 'buffer' },
+	}
 	),
   formatting = {
     fields = { "kind", "abbr" },
@@ -76,37 +88,42 @@ cmp.setup({
     end,
   },
 })
-
-lsp_zero.new_client({
-  name = 'my-new-lsp',
-  cmd = {'command-that-start-the-lsp'},
-  filetypes = {'my-filetype'},
-  root_dir = function()
-    return lsp_zero.dir.find_first({'some-config-file'})
-  end
+cmp.setup.filetype({ 'markdown', 'help' }, {
+	window = {
+		documentation = cmp.config.disable
+	}
 })
 
+--lsp_zero.new_client({
+--  name = 'my-new-lsp',
+--  cmd = {'command-that-start-the-lsp'},
+--  filetypes = {'my-filetype'},
+--  root_dir = function()
+--    return lsp_zero.dir.find_first({'some-config-file'})
+--  end
+--})
+
 lsp_zero.set_sign_icons({
-  error = '✘',
-  warn = '⚠️',
-  hint = '♼',
-  info = '⚡'
+  error = ' ✘',
+  warn = ' ⚠️',
+  hint = ' ♼',
+  info = ' ⚡'
 })
 
 vim.diagnostic.config({
---signs = false,
+	--signs = false,
   virtual_text = false,
   severity_sort = true,
   float = {
     style = 'minimal',
-    border = 'rounded',
+    border = 'none',
     source = 'always',
     header = '',
     prefix = '',
   },
 })
 
-vim.o.updatetime = 250
+vim.o.updatetime = 500
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 -- Style vim-cmp

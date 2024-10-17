@@ -18,12 +18,12 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = {},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = { require('lsp-progress').progress,},
-    lualine_x = {'filetype'},
+    lualine_c = {},-- require('lsp-progress').progress,},
+    lualine_x = {}, --filetype
     lualine_y = {},
-    lualine_z = {'location'}
+    lualine_z = {'location','progress'}
   },
   inactive_sections = {
     lualine_a = {},
@@ -34,7 +34,14 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},-- require('lsp-progress').progress,},
+    lualine_x = {}, --filetype
+    lualine_y = {},
+    lualine_z = {}
+	},
   inactive_winbar = {},
   extensions = {}
 }
