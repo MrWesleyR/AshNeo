@@ -21,7 +21,7 @@ require("neo-tree").setup({
 	 },
 	created = {
 		enabled = true,
-    required_width = 600, -- min width of window required to show this column
+    required_width = 601, -- min width of window required to show this column
   },
 	symlink_target = { enabled = true, },
 	source_selector = {
