@@ -168,13 +168,13 @@ local c = {
 		left_sep = "block",
 		right_sep = "block",
 	},
-	scroll_bar = {
-		provider = "scroll_bar",
-		hl = {
-			fg = "yellow",
-			style = "bold",
-		},
-	},
+--	scroll_bar = {
+--		provider = "scroll_bar",
+--		hl = {
+--			fg = "yellow",
+--			style = "bold",
+--		},
+--	},
 }
 
 local left = {
@@ -196,10 +196,10 @@ local middle = {
 
 local right = {
 	c.lsp_client_names,
-	----c.file_type,
+	--c.file_type,
 	c.position,
 	c.line_percentage,
-	c.scroll_bar,
+  --c.scroll_bar,
 }
 
 local components = {
