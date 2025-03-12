@@ -22,10 +22,11 @@ options.autoindent = true
 options.backup = false
 options.writebackup = false
 options.signcolumn = "yes"
-options.scrolloff=999
+options.scrolloff = 999
 options.encoding = "utf-8"
 options.fileencoding = "utf-8"
 options.ignorecase = true
+options.laststatus = 3
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
