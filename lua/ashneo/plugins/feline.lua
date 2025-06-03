@@ -3,56 +3,82 @@ if not line_ok then
 	return
 end
 
-local one_monokai = {
-	fg = "#abb2bf",
-	bg = "#1e2024",
-	green = "#98c379",
-	yellow = "#e5c07b",
-	purple = "#c678dd",
-	orange = "#d19a66",
-	peanut = "#f6d5a4",
-	red = "#e06c75",
-	aqua = "#61afef",
-	darkblue = "#282c34",
-	dark_red = "#f75f5f",
+local theme = {
+	aqua = "#7AB0DF",
+  bg = "#1C212A",
+  blue = "#5FB0FC",
+  cyan = "#70C0BA",
+  darkred = "#FB7373",
+  fg = "#C7C7CA",
+  gray = "#222730",
+  green = "#79DCAA",
+  lime = "#54CED6",
+  orange = "#FFD064",
+  pink = "#D997C8",
+  purple = "#C397D8",
+  red = "#F87070",
+  yellow = "#FFE59E"
 }
 
-local vi_mode_colors = {
-	NORMAL = "green",
-	OP = "green",
-	INSERT = "yellow",
-	VISUAL = "purple",
-	LINES = "orange",
-	BLOCK = "dark_red",
-	REPLACE = "red",
-	COMMAND = "aqua",
+local mode_theme = {
+  ["NORMAL"] = theme.green,
+  ["OP"] = theme.cyan,
+  ["INSERT"] = theme.aqua,
+  ["VISUAL"] = theme.yellow,
+  ["LINES"] = theme.darkred,
+  ["BLOCK"] = theme.orange,
+  ["REPLACE"] = theme.purple,
+  ["V-REPLACE"] = theme.pink,
+  ["ENTER"] = theme.pink,
+  ["MORE"] = theme.pink,
+  ["SELECT"] = theme.darkred,
+  ["SHELL"] = theme.cyan,
+  ["TERM"] = theme.lime,
+  ["NONE"] = theme.gray,
+  ["COMMAND"] = theme.blue,
 }
+
+local modes = setmetatable({
+  ["n"] = "N",
+  ["no"] = "N",
+  ["v"] = "V",
+  ["V"] = "VL",
+  [""] = "VB",
+  ["s"] = "S",
+  ["S"] = "SL",
+  [""] = "SB",
+  ["i"] = "I",
+  ["ic"] = "I",
+  ["R"] = "R",
+  ["Rv"] = "VR",
+  ["c"] = "C",
+  ["cv"] = "EX",
+  ["ce"] = "X",
+  ["r"] = "P",
+  ["rm"] = "M",
+  ["r?"] = "C",
+  ["!"] = "SH",
+  ["t"] = "T",
+}, { __index = function() return "-" end })
 
 local c = {
 	vim_mode = {
-		provider = {
-			name = "vi_mode",
-			opts = {
-				show_mode_name = true,
-				-- padding = "center", -- Uncomment for extra padding.
-			},
-		},
-		hl = function()
-			return {
-				fg = require("feline.providers.vi_mode").get_mode_color(),
-				bg = "darkblue",
-				style = "bold",
-				name = "NeovimModeHLColor",
-			}
-		end,
-		left_sep = "block",
-		right_sep = "block",
+  provider = function() return modes[vim.api.nvim_get_mode().mode] end,
+  hl = function()
+    return {
+      fg = "bg",
+      bg = require("feline.providers.vi_mode").get_mode_color(),
+      name = "NeovimModeHLColor",
+    }
+  end,
+  left_sep = "block",
+  right_sep = "block",
 	},
 	gitBranch = {
 		provider = "git_branch",
 		hl = {
-			fg = "peanut",
-			bg = "darkblue",
+			fg = "fg",
+			bg = "gray",
 			style = "bold",
 		},
 		left_sep = "block",
@@ -62,28 +88,31 @@ local c = {
 		provider = "git_diff_added",
 		hl = {
 			fg = "green",
-			bg = "darkblue",
+			bg = "gray",
 		},
 		left_sep = "block",
 		right_sep = "block",
+		icon = "+"
 	},
 	gitDiffRemoved = {
 		provider = "git_diff_removed",
 		hl = {
 			fg = "red",
-			bg = "darkblue",
+			bg = "gray",
 		},
 		left_sep = "block",
 		right_sep = "block",
+		icon = "-"
 	},
 	gitDiffChanged = {
 		provider = "git_diff_changed",
 		hl = {
 			fg = "fg",
-			bg = "darkblue",
+			bg = "gray",
 		},
 		left_sep = "block",
 		right_sep = "right_filled",
+		icon = "~"
 	},
 	separator = {
 		provider = "",
@@ -126,33 +155,17 @@ local c = {
 		provider = "lsp_client_names",
 		hl = {
 			fg = "purple",
-			bg = "darkblue",
+			bg = "gray",
 			style = "bold",
 		},
 		left_sep = "left_filled",
 		right_sep = "block",
 	},
-	--file_type = {
-	--	provider = {
-	--		name = "file_type",
-	--		opts = {
-	--			filetype_icon = true,
-	--			case = "titlecase",
-	--		},
-	--	},
-	--	hl = {
-	--		fg = "red",
-	--		bg = "darkblue",
-	--		style = "bold",
-	--	},
-	--	left_sep = "block",
-	--	right_sep = "block",
-	--},
 	position = {
 		provider = "position",
 		hl = {
 			fg = "green",
-			bg = "darkblue",
+			bg = "gray",
 			style = "bold",
 		},
 		left_sep = "block",
@@ -161,19 +174,12 @@ local c = {
 	line_percentage = {
 		provider = "line_percentage",
 		hl = {
-			fg = "aqua",
-			bg = "darkblue",
+			fg = "lime",
+			bg = "gray",
 			style = "bold",
 		},
 		left_sep = "block",
 		right_sep = "block",
-	},
-	scroll_bar = {
-		provider = "scroll_bar",
-		hl = {
-			fg = "yellow",
-			style = "bold",
-		},
 	},
 }
 
@@ -199,7 +205,6 @@ local right = {
 	----c.file_type,
 	c.position,
 	c.line_percentage,
-	c.scroll_bar,
 }
 
 local components = {
@@ -217,6 +222,6 @@ local components = {
 
 feline.setup({
 	components = components,
-	theme = one_monokai,
-	vi_mode_colors = vi_mode_colors,
+	theme = theme,
+	vi_mode_colors = mode_theme,
 })

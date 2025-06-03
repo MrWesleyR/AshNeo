@@ -1,0 +1,56 @@
+---
+--- astheric_blue 
+---
+
+local M = {}
+
+function M.setup()
+  local palette = {
+    fg        = "#C9D1D9",
+    blue      = "#58A6FF",
+    blue_dim  = "#3B75B3",
+    comment   = "#5C6370",
+    accent    = "#79C0FF",
+    selection = "#1f2a35",
+  }
+
+-- ⚡ Define imediatamente via API da Neovim (antes de qualquer redraw)
+  local function hi(group, opts)
+    vim.api.nvim_set_hl(0, group, opts)
+  end
+
+	vim.cmd("highlight Normal guibg=none")
+  vim.opt.termguicolors = true
+  vim.g.colors_name = "astheric-blue"
+
+  -- Aplicação direta sem flicker
+  hi("Normal",        { fg = palette.fg, bg = "none" })
+  hi("NormalFloat",   { fg = palette.fg, bg = "none" })
+  hi("FloatBorder",   { fg = palette.comment, bg = "none" })
+  hi("SignColumn",    { bg = "none" })
+  hi("EndOfBuffer",   { bg = "none" })
+  hi("VertSplit",     { fg = palette.comment, bg = "none" })
+  hi("StatusLine",    { fg = palette.fg, bg = "none" })
+  hi("CursorLine",    { bg = "none" })
+  hi("CursorLineNr",  { fg = palette.accent })
+  hi("LineNr",        { fg = palette.comment, bg = "none" })
+  hi("Visual",        { bg = palette.selection })
+  hi("Pmenu",         { fg = palette.fg, bg = "none" })
+  hi("PmenuSel",      { fg = palette.fg, bg = palette.selection })
+  hi("Folded",        { fg = palette.comment, bg = "none" })
+
+  -- Syntax
+  hi("Comment",       { fg = palette.comment, italic = true })
+  hi("Constant",      { fg = palette.blue })
+  hi("String",        { fg = palette.accent })
+  hi("Identifier",    { fg = palette.accent })
+  hi("Function",      { fg = palette.blue })
+  hi("Statement",     { fg = palette.accent, bold = true })
+  hi("Keyword",       { fg = palette.blue_dim })
+  hi("Type",          { fg = palette.blue })
+  hi("Special",       { fg = palette.accent })
+  hi("Underlined",    { fg = palette.accent, underline = true })
+  hi("Todo",          { fg = "#FFD700", bg = "none", bold = true })
+end
+
+return M

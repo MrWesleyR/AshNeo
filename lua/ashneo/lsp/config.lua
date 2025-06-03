@@ -29,9 +29,10 @@ local cmp_kinds = {
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
   lsp_zero.default_keymaps({buffer = bufnr})
+
+	local workspace = vim.api.nvim_buf_get_name(bufnr)
+
 end)
 
 require('mason').setup({})
@@ -55,26 +56,35 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require'cmp'
+require('luasnip.loaders.from_vscode').lazy_load()
+
 cmp.setup({
+	preselect = 'item',
+	completion = {
+		completeopt = "menu,menuone,noinsert"
+	},
   snippet = {
     expand = function(args)
+			require('luasnip').lsp_expand(args.body)
 			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-     -- require('nvim_lsp').lsp_expand(args.body)
+      require('nvim_lsp').lsp_expand(args.body)
     end,
   },
   window = {
-		--completion = cmp.config.window.bordered(),
-		--documentation = cmp.config.window.bordered(),
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
 		['<Tab>'] = cmp.mapping.select_next_item(),
     ['<Esc>'] = cmp.mapping.abort(),
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.complete(),
 	}),
 
   sources = cmp.config.sources({
 		{ name = 'nvim_lsp_signature_help', group_index=1},
 		{ name = 'nvim_lsp' , group_index = 1},
+		{	name = 'luasnip' },
   },
 	{
 		{ name = 'buffer' },
@@ -111,7 +121,7 @@ lsp_zero.set_sign_icons({
 })
 
 vim.diagnostic.config({
-	--signs = false,
+	signs = false,
   virtual_text = false,
   severity_sort = true,
   float = {

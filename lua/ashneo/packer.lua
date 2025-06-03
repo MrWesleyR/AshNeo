@@ -18,6 +18,7 @@ return require('packer').startup(function(use)
 	--use {'natebosch/vim-lsc'
 	--use {'natebosch/vim-lsc-dart'
 	--
+
 	use { "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     requires = {
@@ -75,16 +76,12 @@ return require('packer').startup(function(use)
 	}
 
 	-- Themes	
-	--use {'slugbyte/lackluster.nvim'
-	--use {'ntk148v/komau.vim'
-	--use {'craftzdog/solarized-osaka.nvim'
-	--use {'neg-serg/neg.nvim'
-	--use {'DeviusVim/deviuspro.nvim'
-	--use {'olivercederborg/poimandres.nvim'
-	--use {'projekt0n/github-nvim-theme'
-	use {'no-clown-fiesta/no-clown-fiesta.nvim'}
-	--End Themes
-	--
+	use {
+    config = function()
+      require('ashneo.config.color').setup()
+    end,
+  }
+
 	use {
 		'lukas-reineke/indent-blankline.nvim',
 		config = function ()
@@ -119,8 +116,8 @@ return require('packer').startup(function(use)
 		end,
 		branch = 'v3.x',
 		requires = {
-			{'williamboman/mason.nvim'},
-			{'williamboman/mason-lspconfig.nvim'},
+			{'mason-org/mason.nvim'},
+			{'mason-org/mason-lspconfig.nvim'},
 			{'onsails/lspkind.nvim'},
 			{'neovim/nvim-lspconfig'},
 			{'hrsh7th/nvim-cmp'},

@@ -1,6 +1,6 @@
   local animate = require('mini.animate')
 animate.setup({
-		-- Vertical scroll
+	-- Vertical scroll
 	scroll = {
    -- Animate for 200 milliseconds with linear easing
    timing = animate.gen_timing.linear({ duration = 200, unit = 'total' }),

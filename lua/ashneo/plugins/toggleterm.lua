@@ -8,8 +8,8 @@ toggleterm.setup({
  open_mapping = [[<c-t>]],
  hide_numbers = true,
  shade_filetypes = {},
- shade_terminals = true,
- shading_factor = 2,
+ shade_terminals = false,
+ shading_factor = 0,
  start_in_insert = true,
  insert_mappings = true,
  persist_size = true,
@@ -18,10 +18,10 @@ toggleterm.setup({
  shell = vim.o.shell,
  float_opts = {
   border = "single",
-  winblend = 0,
+  winblend = 20,
   highlights = {
    border = "Normal",
-   background = "Normal",
+   background = "NONE",
   },
  },
 })
