@@ -1,127 +1,98 @@
 local cmp_kinds = {
-  Text = '  ',
-  Method = '  ',
-  Function = '  ',
-  Constructor = '  ',
-  Field = '  ',
-  Variable = '  ',
-  Class = '  ',
-  Interface = '  ',
-  Module = '  ',
-  Property = '  ',
-  Unit = '  ',
-  Value = '  ',
-  Enum = '  ',
-  Keyword = '  ',
-  Snippet = '  ',
-  Color = '  ',
-  File = '  ',
-  Reference = '  ',
-  Folder = '  ',
-  EnumMember = '  ',
-  Constant = '  ',
-  Struct = '  ',
-  Event = '  ',
-  Operator = '  ',
+  Text = '  ', Method = '  ', Function = '  ',
+  Constructor = '  ', Field = '  ', Variable = '  ',
+  Class = '  ', Interface = '  ', Module = '  ',
+  Property = '  ', Unit = '  ', Value = '  ',
+  Enum = '  ', Keyword = '  ', Snippet = '  ',
+  Color = '  ', File = '  ', Reference = '  ',
+  Folder = '  ', EnumMember = '  ', Constant = '  ',
+  Struct = '  ', Event = '  ', Operator = '  ',
   TypeParameter = '  ',
 }
 
 local lsp_zero = require('lsp-zero')
 
+lsp_zero.setup({
+  configure_diagnostics = true,
+  manage_nvim_bufs = true,
+  setup_servers = true,
+  mode = "workspace",
+})
+
 lsp_zero.on_attach(function(client, bufnr)
-  lsp_zero.default_keymaps({buffer = bufnr})
-
-	local workspace = vim.api.nvim_buf_get_name(bufnr)
-
+  lsp_zero.default_keymaps({ buffer = bufnr })
 end)
+
+lsp_zero.extend_lspconfig({
+  sign_text = false,
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
+})
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
-		'intelephense',
-		'jsonls',
-		'sqlls',
-		'html',
-		'cssls',
-		'ts_ls',
-		'tailwindcss',
-		'lua_ls'
-	},
+    'intelephense', 'jsonls', 'sqlls', 'html', 'cssls',
+    'ts_ls', 'tailwindcss', 'lua_ls'
+  },
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
-			virtual_text=false
-    end,
-  },
+    end
+  }
 })
 
-local cmp = require'cmp'
+local cmp = require('cmp')
 require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
-	preselect = 'item',
-	completion = {
-		completeopt = "menu,menuone,noinsert"
-	},
+  preselect = 'item',
+  completion = {
+    completeopt = "menu,menuone,noinsert"
+  },
   snippet = {
     expand = function(args)
-			require('luasnip').lsp_expand(args.body)
-			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      require('nvim_lsp').lsp_expand(args.body)
+      require('luasnip').lsp_expand(args.body)
     end,
   },
   window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-		['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<Esc>'] = cmp.mapping.abort(),
     ['<Enter>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
-	}),
-
+  }),
   sources = cmp.config.sources({
-		{ name = 'nvim_lsp_signature_help', group_index=1},
-		{ name = 'nvim_lsp' , group_index = 1},
-		{	name = 'luasnip' },
-  },
-	{
-		{ name = 'buffer' },
-	}
-	),
+    { name = 'nvim_lsp_signature_help', group_index = 1 },
+    { name = 'nvim_lsp', group_index = 1 },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer' },
+  }),
   formatting = {
     fields = { "kind", "abbr" },
     format = function(_, vim_item)
-      vim_item.kind = cmp_kinds[vim_item.kind] or ""
+      vim_item.kind = (cmp_kinds[vim_item.kind] or "") .. vim_item.kind
       return vim_item
     end,
   },
 })
-cmp.setup.filetype({ 'markdown', 'help' }, {
-	window = {
-		documentation = cmp.config.disable
-	}
-})
 
---lsp_zero.new_client({
---  name = 'my-new-lsp',
---  cmd = {'command-that-start-the-lsp'},
---  filetypes = {'my-filetype'},
---  root_dir = function()
---    return lsp_zero.dir.find_first({'some-config-file'})
---  end
---})
+cmp.setup.filetype({ 'markdown', 'help' }, {
+  window = { documentation = cmp.config.disable }
+})
 
 lsp_zero.set_sign_icons({
   error = ' ✘',
-  warn = ' ⚠️',
-  hint = ' ♼',
-  info = ' ⚡'
+  warn  = ' ⚠️',
+  hint  = ' ♼',
+  info  = ' ⚡'
 })
 
 vim.diagnostic.config({
-	signs = false,
+  signs = false,
   virtual_text = false,
   severity_sort = true,
   float = {
