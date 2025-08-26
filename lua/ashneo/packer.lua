@@ -48,9 +48,9 @@ return require('packer').startup(function(use)
 	}
 
 	use {
-		'norcalli/nvim-colorizer.lua',
+		'brenoprata10/nvim-highlight-colors',
 		config = function ()
-			require('ashneo.plugins.colorizer')
+			require('ashneo.plugins.nvim-highlight-colors')
 		end
 	}
 
@@ -77,6 +77,7 @@ return require('packer').startup(function(use)
 
 	-- Themes	
 	use {
+		"astheric-gotham",
     config = function()
       require('ashneo.config.color').setup()
     end,
