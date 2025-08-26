@@ -43,7 +43,7 @@
  | Toggle Term | Ctrl-t|
  | Terminal unfocused| Esc| 
  | Select autocomplete | Return |
- | Clouse buffer | F4 or q|
+ | Clouse buffer | F4 or d|
  | MultiLines | Crtl-n|
  | Dashboard| D|
  | Dashboard Update Plugins | u |

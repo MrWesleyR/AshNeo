@@ -9,7 +9,7 @@ vim.g.loaded_netrwPlugin = 1
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
-api.nvim_set_keymap('n', 'q', ':bd<CR>', {})
+api.nvim_set_keymap('n', 'd', ':bd<CR>', {})
 api.nvim_set_keymap('n', 'Q', ':q<CR>', {})
 api.nvim_set_keymap('n', '<S-l>', ':bnext<CR>', {})
 api.nvim_set_keymap('n', '<S-h>', ':bprevious<CR>', {})
