@@ -1,36 +1,56 @@
-
 vim.g.mapleader = " "
 
-local options = vim.opt
+-- Global options
+local opt = vim.opt
 
-options.termguicolors = true
-options.swapfile = false
-options.number = true
-options.tabstop = 2
-options.smarttab = true
-options.smartindent = true
-options.syntax = "on"
-options.wrap = false
-options.nu = true
-options.backup = false
-options.shiftwidth = 2
-options.softtabstop = 2
-options.cursorline = true
-options.relativenumber = true
-options.cursorlineopt = "number"
-options.autoindent = true
-options.backup = false
-options.writebackup = false
-options.signcolumn = "yes"
-options.scrolloff=999
-options.encoding = "utf-8"
-options.fileencoding = "utf-8"
-options.ignorecase = true
+-- UI
+opt.termguicolors = true
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
+opt.signcolumn = "yes"
+opt.wrap = false
+opt.scrolloff = 999
 
--- Undercurl
+-- Indentation
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.smarttab = true
+opt.smartindent = true
+opt.autoindent = true
+
+-- Files and encoding
+opt.swapfile = false
+opt.backup = false
+opt.writebackup = false
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+
+-- Searching
+opt.ignorecase = true
+opt.smartcase = true
+
+-- Responsiveness
+opt.updatetime = 300
+opt.timeoutlen = 500
+
+-- Render
+opt.winblend = 0
+opt.pumblend = 0
+
+-- Syntax (modern Neovim ignores this; consider Treesitter instead)
+vim.cmd("syntax on")
+
+-- Format options: add asterisks in block comments
+opt.formatoptions:append({ "r" })
+
+-- Undercurl support in terminal (use with caution or terminal compatibility)
+-- Works best with Neovim 0.8+ in truecolor terminals
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
--- Add asterisks in block comments
-vim.opt.formatoptions:append({ "r" })
+-- Disable health checks (not recommended unless you really want it)
+vim.g.health_disable = true
+
 
