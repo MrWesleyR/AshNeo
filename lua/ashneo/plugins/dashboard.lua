@@ -29,8 +29,8 @@ require('dashboard').setup {
       },
     },
     packages = { enable = false },
-    project = { enable = true, limit = 8, icon = '', label = ' Projetos:', action = function (path) vim.cmd('e ' .. path) end },
 		mru = { enable = false },
+    project = { enable = true, limit = 8, icon = '', label = ' Projetos:', action = function (path) vim.cmd('e ' .. path) end },
     footer = { "", "", 'De o seu melhor hoje e amanha!'}
 	},
 	hide = { statusline, tabline, winbar },
