@@ -21,9 +21,6 @@ api.nvim_set_keymap('n', '<C-h>', ':vertical resize -5<CR>', {})
 api.nvim_set_keymap('n', '<C-l>', ':vertical resize +5<CR>', {})
 api.nvim_set_keymap('n', '<C-k>', ':resize -5<CR>', {})
 api.nvim_set_keymap('n', '<C-j>', ':resize +5<CR>', {})
-api.nvim_set_keymap('n', '<tb>', ':Telescope buffers<CR>', {})
-api.nvim_set_keymap('n', '<tb>', ':Telescope buffers<CR>', {})
-api.nvim_set_keymap('n', '<tw>', ':Telescope live_grep<CR>', {})
 api.nvim_set_keymap("n", "<C-a>", "gg<S-v>G", {}) -- Select all
 
 -- Move window

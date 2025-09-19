@@ -6,4 +6,6 @@ api.nvim_set_keymap('n','tb','<cmd>Telescope buffers<cr>',{})
 api.nvim_set_keymap('n','th','<cmd>Telescope help_tags<cr>',{})
 api.nvim_set_keymap('n','tw','<cmd>Telescope grep_string<cr>',{})
 api.nvim_set_keymap('n','fs','<cmd>Telescope current_buffer_fuzzy_find<cr>',{})
+api.nvim_set_keymap('n', '<tb>', ':Telescope buffers<CR>', {})
+api.nvim_set_keymap('n', '<tw>', ':Telescope live_grep<CR>', {})
 
